@@ -1,0 +1,51 @@
+NAME
+    Mojolicious::Plugin::Web::Auth::Site::Reddit - Reddit OAuth Plugin for
+    Mojolicious::Plugin::Web::Auth
+
+VERSION
+    version 0.000001
+
+SYNOPSIS
+        my $scope = 'identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote,wikiedit,wikiread';
+
+        # Mojolicious
+        $self->plugin(
+            'Web::Auth',
+            module      => 'Reddit',
+            key         => 'Reddit consumer key',
+            secret      => 'Reddit consumer secret',
+            scope       => $scope,
+            on_finished => sub {
+                my ( $c, $access_token, $access_secret ) = @_;
+                ...;
+            },
+        );
+
+        # Mojolicious::Lite
+        plugin 'Web::Auth',
+            module      => 'Reddit',
+            key         => 'Reddit consumer key',
+            secret      => 'Reddit consumer secret',
+            scope       => $scope,
+            on_finished => sub {
+                my ( $c, $access_token, $access_secret ) = @_;
+                ...
+            };
+
+
+        # default authentication endpoint: /auth/reddit/authenticate
+        # default callback endpoint: /auth/reddit/callback
+
+DESCRIPTION
+    This module adds Reddit <https://www.reddit.com/dev/api/> support to
+    Mojolicious::Plugin::Web::Auth.
+
+AUTHOR
+    Olaf Alders <olaf@wundercounter.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2017 by Olaf Alders.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
