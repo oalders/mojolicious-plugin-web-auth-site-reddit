@@ -1,6 +1,8 @@
 Revision history for Mojolicious-Plugin-Web-Auth-Site-Reddit
 
 {{$NEXT}}
+
+0.000002  2017-01-15 23:37:36-05:00 America/Toronto
     - Docs now make clear which URLs user needs to provide.
     - user_info is now fetched as part of auth process.
 
