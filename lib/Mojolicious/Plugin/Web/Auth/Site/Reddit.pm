@@ -6,11 +6,11 @@ package Mojolicious::Plugin::Web::Auth::Site::Reddit;
 use Mojo::Base qw/Mojolicious::Plugin::Web::Auth::OAuth2/;
 
 has access_token_url => 'https://www.reddit.com/api/v1/access_token';
+has authorize_header => 'bearer ';
 has authorize_url    => 'https://www.reddit.com/api/v1/authorize';
 has response_type    => 'code';
-has user_info        => 0;
-
-#has user_info_url    => 'https://www.reddit.com/api/v1/me';
+has user_info        => 1;
+has user_info_url    => 'https://oauth.reddit.com/api/v1/me';
 
 sub moniker { 'reddit' }
 
