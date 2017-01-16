@@ -51,10 +51,12 @@ my $scope
 
 plugin 'Mojolicious::Plugin::Web::Auth',
     access_token_url => $access_token_url,
-    module           => ucfirst($site),
-    key              => $pit->{key},
-    scope            => $scope,
-    on_finished      => sub {
+    authorize_url =>
+    'https://www.reddit.com/api/v1/authorize?duration=permanent',
+    module      => ucfirst($site),
+    key         => $pit->{key},
+    scope       => $scope,
+    on_finished => sub {
     my ( $c, $access_token, $account_info ) = @_;
     $c->session( 'access_token' => $access_token );
     $c->session( 'account_info' => $account_info );

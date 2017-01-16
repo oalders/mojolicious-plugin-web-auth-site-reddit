@@ -23,12 +23,27 @@ __END__
 
 =head1 SYNOPSIS
 
+    use URI::FromHash qw( uri );
+    my $key = 'foo';
+    my $secret = 'seekrit';
+
+    my $access_token_url = uri(
+        scheme   => 'https',
+        username => $key,
+        password => $secret,
+        host     => 'api.fitbit.com',
+        path     => 'oauth2/token',
+    );
+
     my $scope = 'identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote,wikiedit,wikiread';
 
     # Mojolicious
     $self->plugin(
         'Web::Auth',
-        module      => 'Reddit',
+        module           => 'Reddit',
+        access_token_url => $access_token_url,
+        authorize_url =>
+            'https://www.reddit.com/api/v1/authorize?duration=permanent',
         key         => 'Reddit consumer key',
         secret      => 'Reddit consumer secret',
         scope       => $scope,
@@ -41,6 +56,9 @@ __END__
     # Mojolicious::Lite
     plugin 'Web::Auth',
         module      => 'Reddit',
+        access_token_url => $access_token_url,
+        authorize_url =>
+            'https://www.reddit.com/api/v1/authorize?duration=permanent',
         key         => 'Reddit consumer key',
         secret      => 'Reddit consumer secret',
         scope       => $scope,
@@ -49,7 +67,6 @@ __END__
             ...
         };
 
-
     # default authentication endpoint: /auth/reddit/authenticate
     # default callback endpoint: /auth/reddit/callback
 
@@ -57,5 +74,9 @@ __END__
 
 This module adds L<Reddit|https://www.reddit.com/dev/api/> support to
 L<Mojolicious::Plugin::Web::Auth>.
+
+The default C<authorize_url> allows only for temporary tokens.  If you require
+a refresh token, set your own C<authorize_url> as in the example in the
+SYNOPSIS.
 
 =cut
