@@ -5,9 +5,15 @@ use warnings;
 
 =head1 SYNOPSIS
 
-    perl -Ilib examples/auth.pl daemon -m development -l http://*:8088
+If module is installed:
 
-In your browser go to http://localhost:8088/
+    reddit-oauth daemon -m development -l http://*:3000
+
+If developing:
+
+    perl -Ilib bin/reddit-auth daemon -m development -l http://*:3000
+
+In your browser go to http://localhost:3000/
 
 =head2 ACKNOWLEDGEMENTS
 
@@ -67,8 +73,6 @@ plugin 'Mojolicious::Plugin::Web::Auth',
 get '/' => sub {
     my ($c) = @_;
     unless ( $c->session('access_token') ) {
-        use DDP;
-        p $c->session;
         return $c->redirect_to('login');
     }
 } => 'index';
