@@ -13,12 +13,20 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => 0
   },
   "DISTNAME" => "Mojolicious-Plugin-Web-Auth-Site-Reddit",
+  "EXE_FILES" => [
+    "bin/reddit-oauth"
+  ],
   "LICENSE" => "perl",
   "MIN_PERL_VERSION" => "5.006",
   "NAME" => "Mojolicious::Plugin::Web::Auth::Site::Reddit",
   "PREREQ_PM" => {
+    "Config::Pit" => 0,
+    "FindBin" => 0,
+    "MIME::Base64" => 0,
     "Mojo::Base" => 0,
+    "Mojolicious::Lite" => 0,
     "Mojolicious::Plugin::Web::Auth" => "0.13",
+    "URI::FromHash" => 0,
     "strict" => 0,
     "warnings" => 0
   },
@@ -33,9 +41,14 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Config::Pit" => 0,
+  "FindBin" => 0,
+  "MIME::Base64" => 0,
   "Mojo::Base" => 0,
+  "Mojolicious::Lite" => 0,
   "Mojolicious::Plugin::Web::Auth" => "0.13",
   "Test::More" => 0,
+  "URI::FromHash" => 0,
   "strict" => 0,
   "warnings" => 0
 );

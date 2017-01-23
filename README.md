@@ -35,7 +35,7 @@ version 0.000003
         secret      => 'Reddit consumer secret',
         scope       => $scope,
         on_finished => sub {
-            my ( $c, $access_token, $access_secret ) = @_;
+            my ( $c, $access_token, $access_secret, $extra ) = @_;
             ...;
         },
     );
@@ -50,7 +50,7 @@ version 0.000003
         secret      => 'Reddit consumer secret',
         scope       => $scope,
         on_finished => sub {
-            my ( $c, $access_token, $access_secret ) = @_;
+            my ( $c, $access_token, $access_secret, $extra ) = @_;
             ...
         };
 
@@ -64,7 +64,16 @@ This module adds [Reddit](https://www.reddit.com/dev/api/) support to
 
 The default `authorize_url` allows only for temporary tokens.  If you require
 a refresh token, set your own `authorize_url` as in the example in the
-SYNOPSIS.
+SYNOPSIS.  Your `refresh_token` will be included in the `$extra` arg as seen
+above.  For example, `$extra` may look like the following:
+
+    {
+        expires_in    => 3600,
+        refresh_token => 'seekrit_token',
+        scope =>
+            'edit flair history identity modconfig modflair modlog modposts modwiki mysubreddits privatemessages read report save submit subscribe vote wikiedit wikiread',
+        token_type => 'bearer',
+    },
 
 # AUTHOR
 
