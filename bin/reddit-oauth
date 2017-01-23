@@ -93,6 +93,9 @@ post '/logout' => sub {
 
 app->start;
 
+# PODNAME: reddit-oauth
+# ABSTRACT: Tiny app to facilitate getting Reddit OAuth tokens
+
 __DATA__
 
 @@ index.html.ep
