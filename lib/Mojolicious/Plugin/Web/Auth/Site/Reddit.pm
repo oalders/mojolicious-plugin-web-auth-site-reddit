@@ -48,7 +48,7 @@ __END__
         secret      => 'Reddit consumer secret',
         scope       => $scope,
         on_finished => sub {
-            my ( $c, $access_token, $access_secret ) = @_;
+            my ( $c, $access_token, $access_secret, $extra ) = @_;
             ...;
         },
     );
@@ -63,7 +63,7 @@ __END__
         secret      => 'Reddit consumer secret',
         scope       => $scope,
         on_finished => sub {
-            my ( $c, $access_token, $access_secret ) = @_;
+            my ( $c, $access_token, $access_secret, $extra ) = @_;
             ...
         };
 
@@ -77,6 +77,15 @@ L<Mojolicious::Plugin::Web::Auth>.
 
 The default C<authorize_url> allows only for temporary tokens.  If you require
 a refresh token, set your own C<authorize_url> as in the example in the
-SYNOPSIS.
+SYNOPSIS.  Your C<refresh_token> will be included in the C<$extra> arg as seen
+above.  For example, C<$extra> may look like the following:
+
+    {
+        expires_in    => 3600,
+        refresh_token => 'seekrit_token',
+        scope =>
+            'edit flair history identity modconfig modflair modlog modposts modwiki mysubreddits privatemessages read report save submit subscribe vote wikiedit wikiread',
+        token_type => 'bearer',
+    },
 
 =cut
