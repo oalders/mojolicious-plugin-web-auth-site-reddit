@@ -57,9 +57,10 @@ plugin 'Mojolicious::Plugin::Web::Auth',
     key         => $pit->{key},
     scope       => $scope,
     on_finished => sub {
-    my ( $c, $access_token, $account_info ) = @_;
-    $c->session( 'access_token' => $access_token );
-    $c->session( 'account_info' => $account_info );
+    my ( $c, $access_token, $account_info, $extra ) = @_;
+    $c->session( access_token => $access_token );
+    $c->session( account_info => $account_info );
+    $c->session( extra => $extra );
     return $c->redirect_to('index');
     };
 
@@ -92,7 +93,15 @@ __DATA__
 
 @@ index.html.ep
 % layout 'default';
-<%= site %> access token: <%= session('access_token') %>
+<p><%= site %> access token: <%= session('access_token') %></p>
+<p><%= site %> refresh token: <%= session('extra')->{refresh_token} %></p>
+
+% use Data::Printer;
+% my $session = session();
+
+<pre>
+<%= site %> session: <%= np( $session ) %>
+</pre>
 <form method="post" action="/logout">
 <button type="submit">Log out</button>
 </form>
