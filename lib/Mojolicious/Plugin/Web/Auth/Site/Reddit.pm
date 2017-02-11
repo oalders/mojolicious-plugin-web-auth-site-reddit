@@ -31,8 +31,8 @@ __END__
         scheme   => 'https',
         username => $key,
         password => $secret,
-        host     => 'api.fitbit.com',
-        path     => 'oauth2/token',
+        host     => 'www.reddit.com',
+        path     => '/api/v1/access_token',
     );
 
     my $scope = 'identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote,wikiedit,wikiread';
