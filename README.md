@@ -6,7 +6,7 @@ Mojolicious::Plugin::Web::Auth::Site::Reddit - Reddit OAuth Plugin for Mojolicio
 
 # VERSION
 
-version 0.000003
+version 0.000004
 
 # SYNOPSIS
 
